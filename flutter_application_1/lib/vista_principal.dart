@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/clima_cubit.dart';
+import 'cubit/clima_state.dart';
+import 'bloc/noticias_bloc.dart';
+import 'bloc/noticias_event.dart';
+import 'bloc/noticias_state.dart';
 
 class VistaPrincipal extends StatelessWidget {
   @override
@@ -10,7 +15,7 @@ class VistaPrincipal extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-          
+            
             BlocBuilder<ClimaCubit, ClimaEstado>(
               builder: (context, estado) {
                 if (estado is ClimaInicial) {
@@ -38,7 +43,7 @@ class VistaPrincipal extends StatelessWidget {
 
             Divider(),
 
-          
+            
             Expanded(
               child: BlocBuilder<NoticiasBloc, NoticiasEstado>(
                 builder: (context, estado) {

@@ -1,5 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/clima_cubit.dart';
+import 'bloc/noticias_bloc.dart';
 import 'vista_principal.dart';
 
 void main() {
