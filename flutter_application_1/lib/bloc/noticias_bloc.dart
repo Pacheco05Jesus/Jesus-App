@@ -7,7 +7,7 @@ class NoticiasBloc extends Bloc<NoticiasEvent, NoticiasEstado> {
   NoticiasBloc() : super(NoticiasInicial()) {
     on<CargarNoticias>((event, emit) async {
       emit(NoticiasCargando());
-      await Future.delayed(Duration(seconds: 2)); // simulación API
+      await Future.delayed(Duration(seconds: 2));
 
       final noticias = List.generate(
         5,

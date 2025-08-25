@@ -1,15 +1,23 @@
+import 'package:flutter_application_1/Data/servicio_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'clima_state.dart';
 import 'dart:async';
 
-class ClimaCubit extends Cubit<ClimaEstado> {
-  ClimaCubit() : super(ClimaInicial());
+part 'clima_state.dart';
 
-  Future<void> cargarClima(String ciudad) async {
-    emit(ClimaCargando());
-    await Future.delayed(Duration(seconds: 2)); 
+class ClimaCubit extends Cubit<ClimaState> {
+  final APIServicio api;
 
-    
-    emit(ClimaCargado(temperatura: 22, descripcion: "Soleado en $ciudad"));
+  ClimaCubit(this.api) : super(Initial());
+
+  Future<void> loadPosts() async {
+    try {
+      emit(Loading());
+
+      final response = await api.fetchData("posts");
+      final posts = response.map((post) => post).toList();
+      emit(Loaded(posts));
+    } catch (e) {
+      emit(Error("Error: $e"));
+    }
   }
 }
