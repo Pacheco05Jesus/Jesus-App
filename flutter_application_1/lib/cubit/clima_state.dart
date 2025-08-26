@@ -7,24 +7,12 @@ class Initial extends ClimaState {}
 class Loading extends ClimaState {}
 
 class Loaded extends ClimaState {
-  final List<dynamic> posts;
+  final Clima clima;
+  Loaded(this.clima);
 
-  Loaded(this.posts);
 }
 
 class Error extends ClimaState {
-  final String message;
-
-  Error(this.message);
-}
-
-class Post {
-  final String title;
-  final String body;
-
-  Post({required this.title, required this.body});
-
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(title: json['title'] ?? '', body: json['body'] ?? '');
-  }
+  final String mensaje;
+  Error(this.mensaje);
 }

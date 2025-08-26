@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/clima_cubit.dart';
-import 'cubit/clima_state.dart';
 import 'bloc/noticias_bloc.dart';
 import 'bloc/noticias_event.dart';
 import 'bloc/noticias_state.dart';
 
-class VistaPrincipal extends StatelessWidget {
+class VistaPrincipal extends StatelessWidget { 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +20,12 @@ class VistaPrincipal extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BlocBuilder<ClimaCubit, ClimaEstado>(
+            BlocBuilder<ClimaCubit, ClimaState>(
               builder: (context, estado) {
-                if (estado is ClimaInicial) {
+                if (estado is Initial) {
                   return ElevatedButton.icon(
                     onPressed: () =>
-                        context.read<ClimaCubit>().cargarClima("Bogotá"),
+                        context.read<ClimaCubit>().cargarClima("Bogota"), 
                     icon: Icon(Icons.cloud),
                     label: Text("Cargar Clima"),
                     style: ElevatedButton.styleFrom(
@@ -36,9 +35,10 @@ class VistaPrincipal extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     ),
                   );
-                } else if (estado is ClimaCargando) {
+                } else if (estado is Loading) {
                   return CircularProgressIndicator();
-                } else if (estado is ClimaCargado) {
+                } else if (estado is Loaded) {
+                  final clima = estado.clima; 
                   return Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
@@ -47,19 +47,19 @@ class VistaPrincipal extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
                         children: [
-                          Text("🌤 ${estado.descripcion}",
+                          Text("🌤 ${clima.descripcion}",
                               style: TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.blueAccent)),
                           SizedBox(height: 8),
-                          Text("Temperatura: ${estado.temperatura}°C",
+                          Text("Temperatura: ${clima.temperatura}°C",
                               style: TextStyle(fontSize: 18)),
                         ],
                       ),
                     ),
                   );
-                } else if (estado is ClimaError) {
+                } else if (estado is Error) {
                   return Text("Error: ${estado.mensaje}",
                       style: TextStyle(color: Colors.red));
                 }
@@ -74,7 +74,7 @@ class VistaPrincipal extends StatelessWidget {
             SizedBox(height: 8),
 
             Expanded(
-              child: BlocBuilder<NoticiasBloc, NoticiasEstado>(
+              child: BlocBuilder<NoticiasBloc, NoticiasState>(
                 builder: (context, estado) {
                   if (estado is NoticiasInicial) {
                     return Center(
