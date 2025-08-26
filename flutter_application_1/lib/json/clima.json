@@ -1,4 +1,11 @@
 {
-    "climaBogota": "lluvioso",
-    "climaBarranquilla": "Caluroso"
+  "name": "Bogotá",
+  "weather": [
+    {
+      "description": "nubes dispersas"
+    }
+  ],
+  "main": {
+    "temp": 21.5
+  }
 }

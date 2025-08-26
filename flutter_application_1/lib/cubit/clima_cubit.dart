@@ -19,15 +19,13 @@ class Clima {
 }
 
 class ClimaCubit extends Cubit<ClimaState> {
-  final String apiKey = '439d4b804bc8187953eb36d2a8c26a02'; 
-
   ClimaCubit() : super(Initial());
 
   Future<void> cargarClima(String ciudad) async {
     try {
       emit(Loading());
 
-      final url = Uri.parse('https://www.metaweather.com/api/location/368148/');
+      final url = Uri.parse('https://raw.githubusercontent.com/Pacheco05Jesus/Jesus-App/refs/heads/main/flutter_application_1/lib/json/clima.json');
 
 
       final response = await http.get(url);
