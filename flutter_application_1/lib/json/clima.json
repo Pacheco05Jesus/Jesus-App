@@ -1,11 +1,5 @@
 {
   "name": "Bogotá",
-  "weather": [
-    {
-      "description": "nubes dispersas"
-    }
-  ],
-  "main": {
-    "temp": 21.5
-  }
+  "description": "nubes dispersas"
+  "temp": 21.5
 }
