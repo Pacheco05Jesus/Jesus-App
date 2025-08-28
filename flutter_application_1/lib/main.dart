@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/bloc/noticias_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/clima_cubit.dart';
 import 'bloc/noticias_bloc.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ClimaCubit()),
-        BlocProvider(create: (_) => NoticiasBloc()),
+        BlocProvider(create: (_) => NoticiasBloc()..add(CargarNoticias())),
       ],
       child: MaterialApp(
         title: 'Cubit + Bloc',
