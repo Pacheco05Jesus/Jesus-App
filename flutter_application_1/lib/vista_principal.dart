@@ -8,7 +8,7 @@ import 'bloc/noticias_state.dart';
 class VistaPrincipal extends StatelessWidget {
   
   Future<void> cargarClimaConDelay(BuildContext context) async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
     context.read<ClimaCubit>().cargarClima("Bogota");
   }
 
@@ -59,6 +59,7 @@ class VistaPrincipal extends StatelessWidget {
                               padding: const EdgeInsets.all(16.0),
                               child: Column(
                                 children: [
+                                  Text("Ciudad: ${estado.ciudad}"),
                                   Text(
                                     "🌤 ${estado.clima.descripcion}",
                                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.blueAccent),

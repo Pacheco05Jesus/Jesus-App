@@ -8,7 +8,8 @@ class Loading extends ClimaState {}
 
 class Loaded extends ClimaState {
   final Clima clima;
-  Loaded(this.clima);
+  final String ciudad;
+  Loaded(this.clima, this.ciudad);
 
 }
 
